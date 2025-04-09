@@ -25,16 +25,19 @@ const { chromium, firefox, webkit } = require('playwright');
       await page.goto('https://site.q10.com/');
       await page.waitForLoadState('domcontentloaded'); 
 
+      await page.waitForTimeout(3000); 
 
   
-      await page.fill('input[name="NombreUsuario"]', '72847110');
+      await page.fill('input[name="NombreUsuario"]', process.env.USER);
+      await page.waitForTimeout(4000); 
 
-      await page.fill('input[name="Contrasena"]', '966548325');
+      await page.fill('input[name="Contrasena"]', process.env.PASSWORD);
 
+      await page.waitForTimeout(4000); 
 
       await page.click('button[type="submit"]');
+      await page.waitForTimeout(30000); 
 
-      await page.waitForNavigation({ waitUntil: 'networkidle', timeout: 60000 });
 
       console.log(`Registro exitoso en ${browserNames[i]}!`);
 
